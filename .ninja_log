@@ -1,0 +1,9 @@
+# ninja log v5
+43	576	6817286218762874	build.ninja	9ed6eedbf0b491f0
+329	14059	6811830185662053	CMakeFiles/RainbowQuest.dir/extern/includes/beatsaber-hook/src/inline-hook/And64InlineHook.cpp.o	c91f5af8013c41f7
+319	3767	6811830080169606	CMakeFiles/RainbowQuest.dir/extern/includes/beatsaber-hook/src/inline-hook/inlineHook.c.o	e0011ed731ac2fd6
+325	3744	6811830080169606	CMakeFiles/RainbowQuest.dir/extern/includes/beatsaber-hook/src/inline-hook/relocate.c.o	dd0e72432a37fc4a
+36	12996	6817284071675095	CMakeFiles/RainbowQuest.dir/src/main.cpp.o	6521901f10efdd6a
+12997	16600	6817284107998741	libRainbowQuest.so	fe1bad7e29a28ec9
+34	13011	6817286430260372	CMakeFiles/RainbowQuest.dir/src/main.cpp.o	6521901f10efdd6a
+13012	16327	6817286464503923	libRainbowQuest.so	fe1bad7e29a28ec9

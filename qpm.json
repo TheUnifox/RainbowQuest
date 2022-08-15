@@ -1,0 +1,45 @@
+{
+  "sharedDir": "shared",
+  "dependenciesDir": "extern",
+  "info": {
+    "name": "Rainbow Quest",
+    "id": "RainbowQuest",
+    "version": "0.1.0",
+    "url": null,
+    "additionalData": {
+      "overrideSoName": "libRainbowQuest.so"
+    }
+  },
+  "dependencies": [
+    {
+      "id": "beatsaber-hook",
+      "versionRange": ">=3.10.0",
+      "additionalData": {
+        "extraFiles": [
+          "src/inline-hook"
+        ]
+      }
+    },
+    {
+      "id": "modloader",
+      "versionRange": ">=1.2.3",
+      "additionalData": {}
+    },
+    {
+      "id": "codegen",
+      "versionRange": ">=0.25.0",
+      "additionalData": {}
+    },
+    {
+      "id": "songloader",
+      "versionRange": ">=0.10.1",
+      "additionalData": {}
+    },
+    {
+      "id": "config-utils",
+      "versionRange": ">=0.8.0",
+      "additionalData": {}
+    }
+  ],
+  "additionalData": {}
+}
