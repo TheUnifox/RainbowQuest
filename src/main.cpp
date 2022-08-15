@@ -93,47 +93,26 @@ MAKE_HOOK_MATCH(BeatEffectSpawner_Update, &GlobalNamespace::BeatEffectSpawner::U
     }
 }
 
-void DidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
+void UIDidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
     getLogger().info("settings menu");
     // Create our UI elements only when shown for the first time.
     if(firstActivation) {
-        getLogger().info("creating container");
-        // Create a container that has a scroll bar.
-        self->get_gameObject()->AddComponent<HMUI::Touchable*>();
-        UnityEngine::GameObject* settings = QuestUI::BeatSaberUI::CreateScrollableSettingsContainer(self->get_transform());
 
-        getLogger().info("creating modal");
-        HMUI::ModalView* settingsModal = QuestUI::BeatSaberUI::CreateModal(settings->get_transform(), UnityEngine::Vector2(120.0f, 80.0f), [](HMUI::ModalView* modal){}, true);
-        UnityEngine::GameObject* settingsm = QuestUI::BeatSaberUI::CreateScrollableModalContainer(settingsModal);
-        
-        getLogger().info("creating text");
-        QuestUI::BeatSaberUI::CreateText(settingsm->get_transform(), "Rainbow Settings");
+        auto* scroll = QuestUI::BeatSaberUI::CreateScrollableSettingsContainer(self->get_transform());
+        auto container = scroll->GetComponent<UnityEngine::UI::HorizontalOrVerticalLayoutGroup*>();
 
-        getLogger().info("creating toggle");
-        QuestUI::BeatSaberUI::CreateToggle(settingsm->get_transform(), "Rainbow Enabled", getRainbowConfig().RainbowEnabled.GetValue(),
-            [](bool value) { 
-                getRainbowConfig().RainbowEnabled.SetValue(value);
-            });
+        container->set_childAlignment(UnityEngine::TextAnchor::MiddleCenter);
 
-        getLogger().info("creating slider");
-        QuestUI::BeatSaberUI::CreateSliderSetting(settingsm->get_transform(), "Rainbow Speed", 0.1f, getRainbowConfig().RainbowSpeed.GetValue(), 0.0f, 1.0f,
-            [](float value) { 
-                getRainbowConfig().RainbowSpeed.SetValue(value);
-            });
+        container->set_childControlHeight(true);
+        container->set_childForceExpandHeight(true);
+        container->set_childControlWidth(true);
+        container->set_childForceExpandWidth(true);
 
-        getLogger().info("creating settings toggle");
-        QuestUI::BeatSaberUI::CreateToggle(settings->get_transform(), "Settings menu", false,
-            [settingsModal](bool value) { 
-                getLogger().info("toggling settings");
-                if (value){
-                    settingsModal->Show(true, true, nullptr);
-                }
-                else{
-                    settingsModal->Hide(true, nullptr);
-                }
-            });
-        
-        getLogger().info("done settings menu");
+        auto* layoutelem = scroll->AddComponent<UnityEngine::UI::LayoutElement*>();
+        layoutelem->set_preferredWidth(80);
+
+        AddConfigValueToggle(container->get_transform(), getRainbowConfig().RainbowEnabled);
+        AddConfigValueIncrementFloat(container->get_transform(), getRainbowConfig().RainbowSpeed, 1, 0.1f, 0.0f, 1.0f);
     }
 }
 
@@ -147,8 +126,8 @@ extern "C" void load() {
     getLogger().info("initing questui");
     QuestUI::Init();
     getLogger().info("registering settings ui");
-	QuestUI::Register::RegisterModSettingsViewController(modInfo, DidActivate);
-    QuestUI::Register::RegisterMainMenuModSettingsViewController(modInfo, DidActivate);
+	QuestUI::Register::RegisterModSettingsViewController(modInfo, UIDidActivate);
+    QuestUI::Register::RegisterMainMenuModSettingsViewController(modInfo, UIDidActivate);
     getLogger().info("Successfully installed Settings UI!");
 
     getLogger().info("Starting RainbowQuest installation...");
