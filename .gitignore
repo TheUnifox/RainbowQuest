@@ -62,4 +62,4 @@ qpm_defines.cmake
 [Bb]uild/
 cmake-build-*/
 extern.cmake
-CMakeFiles/
+[Cc][Mm]ake[Ff]iles/
