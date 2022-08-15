@@ -65,4 +65,5 @@ extern.cmake
 [Cc][Mm]ake[Ff]iles/
 
 #ninja stuff
-.ninja*
+.ninja_*
+*.ninja
