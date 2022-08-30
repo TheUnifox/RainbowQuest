@@ -88,9 +88,9 @@ MAKE_HOOK_MATCH(BeatEffectSpawner_Update, &GlobalNamespace::BeatEffectSpawner::U
         colorScheme->environmentColor1 = mainColor2;
 
         colorManager->colorScheme = colorScheme;
-
-        BeatEffectSpawner_Update(self);
     }
+
+    BeatEffectSpawner_Update(self);
 }
 
 void UIDidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
