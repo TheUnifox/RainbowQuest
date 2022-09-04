@@ -19,7 +19,7 @@
 
 ## ToDo
 
-- [ ] Fix settings menu
+- [x] Fix settings menu
 - [ ] Make all map lights fade
 - [ ] Make sabers fade
 
